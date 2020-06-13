@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const axios = require('axios');
 const Response = require('./Response');
 const PORT = 3000;
 
@@ -54,6 +55,15 @@ app.get('/api/student', (req, res) => {
     out.addError('The student was not found');
   }
   res.json(out);
+});
+
+app.get('/api/movie', (req, res) => {
+  const {title} = req.query;
+  const queryUrl = `http://www.omdbapi.com/?apikey=trilogy&t=${title}`
+  axios.get(queryUrl)
+  .then(({data}) => {
+    res.json(data);
+  })
 });
 
 app.listen(PORT, () => console.log('Server started'));

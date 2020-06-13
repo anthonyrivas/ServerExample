@@ -1,5 +1,5 @@
 class Response {
-  constructor(data, errors) {
+  constructor(data) {
     this.success = true;
     this.data = data;
     this.errors = [];
